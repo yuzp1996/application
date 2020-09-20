@@ -17,8 +17,8 @@ package cmd
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
+	"github.com/yuzp1996/application/threadmutil"
 )
 
 // serveCmd represents the serve command
@@ -50,7 +50,7 @@ func init() {
 	// serveCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
-
-func thisWhatWillBeRun(){
-	fmt.Printf("Hello, your code should be here %s", "code place")
+func thisWhatWillBeRun() {
+	fmt.Printf("Hello, your code should be here %s\n", "code place")
+	threadmutil.TransformPackage()
 }

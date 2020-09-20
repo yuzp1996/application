@@ -37,8 +37,8 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	// Uncomment the following line if your bare application
-	// has an action associated with it:
-	//	Run: func(cmd *cobra.Command, args []string) { },
+	// has an action associated with it:  执行的是这里的函数
+	Run: func(cmd *cobra.Command, args []string) { rootFunc() },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -62,6 +62,10 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	rootCmd.Flags().String("testDefault", "default", "this is a test flag")
+
+	viper.BindPFlag("config.testDefault", rootCmd.Flags().Lookup("testDefault"))
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -88,4 +92,10 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
+}
+
+func rootFunc() {
+	fmt.Println(" this is root cmd func")
+	value := viper.Get("config.testDefault")
+	fmt.Printf(" valuse is %v", value)
 }
