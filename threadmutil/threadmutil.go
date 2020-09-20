@@ -6,11 +6,11 @@ import (
 )
 
 type Truck struct {
-	SUM      int
-	Capacity int
-	Start    chan bool
-	Last chan bool
-	Lock sync.Locker
+	SUM      int         `json:"sum"`
+	Capacity int         `json:"capacity"`
+	Start    chan bool   `json:"start"`
+	Last     chan bool   `json:"last"`
+	Lock     sync.Locker `json:"lock"`
 }
 
 func (truck *Truck) Load(p Package) {
@@ -32,13 +32,14 @@ func (truck *Truck) Load(p Package) {
 		// 读取
 		truck.Lock.Lock()
 		truck.SUM -= 1
-		if truck.SUM == 0{
+		if truck.SUM == 0 {
 			truck.Last <- true
 		}
 		truck.Lock.Unlock()
 	}()
 
 }
+
 type Package struct {
 	Identifier int
 }
@@ -46,22 +47,20 @@ type Package struct {
 // we have 100 packages when it is 101, we will load it
 func TransformPackage() {
 	start := make(chan bool)
-	last := make(chan  bool)
-
+	last := make(chan bool)
 
 	truck := Truck{
 		SUM:      0,
 		Capacity: 100,
-		Start:start,
-		Lock: &sync.Mutex{},
-		Last:last,
- 	}
+		Start:    start,
+		Lock:     &sync.Mutex{},
+		Last:     last,
+	}
 
- 	// 开始准备货物
+	// 开始准备货物
 	for i := 1; i <= truck.Capacity; i++ {
 		truck.Load(Package{Identifier: i})
 	}
-
 	// 等待开始装货命令
 	<-truck.Start
 
@@ -70,7 +69,7 @@ func TransformPackage() {
 		if last != true {
 			// 这里总会得到一个值  就是读取值的没有互斥锁的原因
 			fmt.Printf("Not finished, truck sum is  %d\n", truck.SUM)
-		}else {
+		} else {
 			fmt.Printf("Finished!!!")
 			break
 		}
