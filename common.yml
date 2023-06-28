@@ -1,0 +1,12 @@
+parameters:
+- name: 'vmImage'
+  default: 'ubuntu 16.04'
+  type: string
+
+jobs:
+- job: Build
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  steps:
+  - script: npm install
+  - script: npm test
