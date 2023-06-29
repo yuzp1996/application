@@ -1,8 +1,10 @@
 resources:
- containers:
-     - container: my-container
-       endpoint: zpyu
-       image: mycontainerimages
+  repositories:
+    - repository: templates
+      type: github
+      name: yuzp1996/application
+      ref: refs/heads/master # optional ref to pin to
+      endpoint: zpyu
 
 extends:
-    template: common.yml
+    template: common.yml@templates
