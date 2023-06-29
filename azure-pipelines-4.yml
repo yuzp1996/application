@@ -6,8 +6,6 @@
 trigger:
 - master
 
-pool:
-  vmImage: ubuntu-latest
   
 resources:
   repositories:
@@ -15,7 +13,9 @@ resources:
       type: github
       name: yuzp1996/application
       ref: refs/heads/master # optional ref to pin to
-      endpoint: zpyu1
+      endpoint: zpyu
 
-extends:
-    template: include-npm-steps.yml
+jobs:
+- template: common.yml@templates  # Template reference
+  parameters:
+    vmImage: 'windows-latest'
