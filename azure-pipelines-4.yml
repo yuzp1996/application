@@ -8,3 +8,5 @@ resources:
 
 extends:
     template: common.yml@templates
+    parameters:
+      vmImage: 'windows-latest'
