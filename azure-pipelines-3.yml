@@ -5,6 +5,9 @@
 
 
 jobs:
+- job: Start
+  steps: 
+  - script: echo "start"
 - job: Linux
   pool:
     vmImage: 'ubuntu-latest'
@@ -15,3 +18,8 @@ jobs:
     vmImage: 'windows-latest'
   steps:
   - template: include-npm-steps.yml  # Template reference
+- job: End
+  steps: 
+  - script: echo "end"
+
+
