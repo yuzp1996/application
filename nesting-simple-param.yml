@@ -1,0 +1,5 @@
+extends:
+  template: simple-param.yml
+  parameters:
+      yesNo: true # set to a non-boolean value to have the build fail
+      second: ggg
