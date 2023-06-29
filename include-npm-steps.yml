@@ -1,4 +1,4 @@
 steps:
-- script: npm install
-- script: yarn install
-- script: npm run compile
+- script: echo "npm install"
+- script: echo "yarn install"
+- script: echo "npm run compile"
