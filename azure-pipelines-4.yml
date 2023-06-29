@@ -15,7 +15,7 @@ resources:
       type: github
       name: yuzp1996/application
       ref: refs/heads/master # optional ref to pin to
-      endpoint: zpyu
+      endpoint: zpyu1
 
 extends:
     template: include-npm-steps.yml
