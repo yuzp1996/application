@@ -12,6 +12,7 @@ resources:
       type: github
       name: yuzp1996/application
       ref: refs/heads/master # optional ref to pin to
+      endpoint: zpyu
 
 jobs:
 - template: common.yml@templates  # Template reference
