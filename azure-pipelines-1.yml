@@ -9,14 +9,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
-extends:
-  template: simple-param.yml
-  parameters:
-      yesNo: true # set to a non-boolean value to have the build fail
-      second: ggg
-      
-
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -25,3 +17,11 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+extends:
+  template: simple-param.yml
+  parameters:
+      yesNo: true # set to a non-boolean value to have the build fail
+      second: ggg
+      
+
